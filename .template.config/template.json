@@ -1,0 +1,35 @@
+{
+   "$schema": "http://json.schemastore.org/template",
+   "author": "omoinjm",
+   "classifications": [
+      "ASP.NET",
+      "Clean Architecture"
+   ],
+   "identity": "Clean.Architecture.Template.CSharp",
+   "name": "Clean Architecture Template",
+   "description": "A Clean Architecture Solution Template for creating a API with ASP.NET Core.",
+   "shortName": "clean-arc-sln",
+   "sourceName": "Clean.Architecture.Template",
+   "tags": {
+      "language": "C#",
+      "type": "project"
+   },
+   "preferNameDirectory": true,
+   "symbols": {
+      "Framework": {
+         "type": "parameter",
+         "description": "The target framework for this project",
+         "datatype": "choice",
+         "choices": [
+            {
+               "choice": "net9.0"
+            },
+            {
+               "choice": "net8.0"
+            }
+         ],
+         "defaultValue": "net9.0",
+         "replaces": "{TargetFramework}"
+      }
+   }
+}
