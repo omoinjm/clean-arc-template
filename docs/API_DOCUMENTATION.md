@@ -469,4 +469,4 @@ public async Task CreateProductHandler_WithValidInput_ReturnsSuccessfulResult()
 9. ✅ Write unit tests for critical business logic
 10. ✅ Keep layers independent and loosely coupled
 
-For more information, see the main README.md file.
+For more information, see the main [README.md](../README.md) file.

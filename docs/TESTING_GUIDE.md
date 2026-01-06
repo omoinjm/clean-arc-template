@@ -269,11 +269,12 @@ Complete this checklist to verify everything is working:
   - Check src/ and tests/ folders
 
 - [ ] **Documentation**
-  - [ ] README.md exists
-  - [ ] QUICKSTART.md exists
-  - [ ] API_DOCUMENTATION.md exists
-  - [ ] CONTRIBUTING.md exists
-  - [ ] COMPLETION_SUMMARY.md exists
+  - [x] README.md exists
+  - [x] CONTRIBUTING.md exists
+  - [ ] docs/QUICKSTART.md exists
+  - [ ] docs/API_DOCUMENTATION.md exists
+  - [ ] docs/TESTING_GUIDE.md exists
+  - [ ] docs/COMPLETION_SUMMARY.md exists
 
 ---
 
@@ -329,8 +330,9 @@ For automated testing in GitHub Actions or other CI/CD:
 
 - [QUICKSTART.md](./QUICKSTART.md) - 5-minute setup
 - [API_DOCUMENTATION.md](./API_DOCUMENTATION.md) - Feature creation
-- [README.md](./README.md) - Architecture overview
+- [TESTING_GUIDE.md](./TESTING_GUIDE.md) - Testing options
 - [COMPLETION_SUMMARY.md](./COMPLETION_SUMMARY.md) - What's included
+- [../README.md](../README.md) - Architecture overview
 
 ---
 

@@ -265,7 +265,7 @@ Change the port in `launchSettings.json` or environment variables.
 ## Next Steps
 
 1. Read [API_DOCUMENTATION.md](./API_DOCUMENTATION.md) for detailed feature creation
-2. Check [CONTRIBUTING.md](./CONTRIBUTING.md) to contribute
+2. Check [../CONTRIBUTING.md](../CONTRIBUTING.md) to contribute
 3. Review the example handlers in `src/Clean.Architecture.Template.Application/Handlers/`
 
 ## Tips & Tricks
@@ -279,7 +279,7 @@ Change the port in `launchSettings.json` or environment variables.
 
 ## Support
 
-- 📖 Read the [README.md](./README.md) for complete documentation
+- 📖 Read the [../README.md](../README.md) for complete documentation
 - 🐛 Open an issue for bugs
 - 💡 Suggest features via discussions
 

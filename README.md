@@ -12,6 +12,7 @@ If you find this project useful, please give it a star. Thanks! ⭐
 - [Technology Stack](#technology-stack)
 - [Building and Running](#building-and-running)
 - [Best Practices](#best-practices)
+- [Documentation](#documentation)
 
 ## Architecture Overview
 
@@ -237,6 +238,16 @@ public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
     return Created($"/api/users/{result.Id}", result);
 }
 ```
+
+## 📚 Documentation
+
+Comprehensive guides are available in the `docs/` folder:
+
+- **[docs/QUICKSTART.md](./docs/QUICKSTART.md)** - Get started in 5 minutes
+- **[docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md)** - Step-by-step feature creation tutorial
+- **[docs/TESTING_GUIDE.md](./docs/TESTING_GUIDE.md)** - Complete testing guide with multiple methods
+- **[docs/COMPLETION_SUMMARY.md](./docs/COMPLETION_SUMMARY.md)** - What's included in this template
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Contribution guidelines
 
 ## Contributing
 

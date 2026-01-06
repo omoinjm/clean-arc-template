@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Clean.Architecture.Template.Application.Response.Auth;
+using Clean.Architecture.Template.Application.Response;
 using Clean.Architecture.Template.Core.Enum;
 using Microsoft.AspNetCore.Mvc;
 

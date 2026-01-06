@@ -94,10 +94,12 @@ echo ""
 echo "📋 Test 5: Verifying documentation..."
 DOCS=(
     "README.md"
-    "QUICKSTART.md"
-    "API_DOCUMENTATION.md"
     "CONTRIBUTING.md"
-    "COMPLETION_SUMMARY.md"
+    "docs/QUICKSTART.md"
+    "docs/API_DOCUMENTATION.md"
+    "docs/TESTING_GUIDE.md"
+    "docs/COMPLETION_SUMMARY.md"
+)
 )
 
 ALL_DOCS_EXIST=0
@@ -109,7 +111,7 @@ for doc in "${DOCS[@]}"; do
 done
 
 if [ $ALL_DOCS_EXIST -eq 0 ]; then
-    test_result 0 "All 5 documentation files present"
+    test_result 0 "All 6 documentation files present"
 else
     test_result 1 "Documentation verification"
 fi
@@ -152,10 +154,11 @@ if [ $FAILED -eq 0 ]; then
     echo -e "${GREEN}🎉 ALL TESTS PASSED! Template is working perfectly!${NC}"
     echo ""
     echo "Next steps:"
-    echo "  1. Read QUICKSTART.md to get started"
-    echo "  2. Review API_DOCUMENTATION.md for tutorials"
-    echo "  3. Start the API: dotnet run --project src/Clean.Architecture.Template.API"
-    echo "  4. View Swagger: https://localhost:5001/swagger"
+    echo "  1. Read docs/QUICKSTART.md to get started"
+    echo "  2. Review docs/API_DOCUMENTATION.md for tutorials"
+    echo "  3. Check docs/TESTING_GUIDE.md for testing options"
+    echo "  4. Start the API: dotnet run --project src/Clean.Architecture.Template.API"
+    echo "  5. View Swagger: https://localhost:5001/swagger"
     exit 0
 else
     echo -e "${RED}❌ Some tests failed. Please check the output above.${NC}"
