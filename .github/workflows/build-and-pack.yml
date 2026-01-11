@@ -41,6 +41,9 @@ jobs:
         id: version
         uses: battila7/get-version-action@v2
 
+      - name: Create output directory
+        run: mkdir -p ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+
       - name: "Pack project"
         run: |
           dotnet pack ${{ env.PROJECT_PATH }} \
