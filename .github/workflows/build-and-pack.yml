@@ -54,7 +54,7 @@ jobs:
       # Restore dependencies
       # -------------------------------
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore ./src/Clean.Architecture.Template.API/Clean.Architecture.Template.API.csproj
 
       # -------------------------------
       # Versioning
