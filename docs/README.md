@@ -155,7 +155,7 @@ A basic example:
 - **name** – Friendly name shown in `dotnet new --list`
 - **shortName** – CLI command name
 - **classifications** – Categories for discovery
-- **sourceName** – Placeholder project name to be replaced
+- **sourceName** – Placeholder project name to be replaced. For example, if your base project's namespace is `TemplateProjectName`, when a user creates a new project with `-n MyAwesomeApi`, all occurrences of `TemplateProjectName` (like in namespaces and folder names) will be replaced by `MyAwesomeApi`.
 
 ---
 
@@ -208,9 +208,11 @@ dotnet new company-webapi -n TestApi
 
 Verify:
 
-- Project builds successfully
-- `Startup.cs` is present
-- Services and middleware are structured as expected
+- Project builds successfully (`dotnet build TestApi`).
+- `Startup.cs` is present.
+- Services and middleware are structured as expected.
+- Run any included unit/integration tests (`dotnet test TestApi`).
+- For Web API templates, run the application (`dotnet run --project TestApi.API`) and verify that API endpoints are accessible and return expected responses (e.g., using a tool like Postman or `curl`).
 
 ---
 
@@ -244,6 +246,56 @@ You can distribute templates by:
 ```bash
 dotnet new install <path-or-repo-url>
 ```
+
+### Packaging as a NuGet Package
+
+For more formal distribution, especially within an organization, packaging your template as a NuGet package (`.nupkg`) is recommended.
+
+1.  **Create a `.csproj` file for your template package:** In the root directory of your template, create a new `.csproj` file (e.g., `MyCompany.Templates.csproj`) with content similar to this:
+
+    ```xml
+    <Project Sdk="Microsoft.NET.Sdk">
+      <PropertyGroup>
+        <PackageType>Template</PackageType>
+        <PackageVersion>1.0.0</PackageVersion>
+        <PackageId>MyCompany.WebApi.Template</PackageId>
+        <Title>My Company Web API Template</Title>
+        <Authors>Your Company</Authors>
+        <Description>Template for creating ASP.NET Core Web API projects with company standards.</Description>
+        <PackageTags>dotnet-new;template;webapi;company</PackageTags>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>content</ContentTargetFolders>
+        <NoWarn>$(NoWarn);NU5128</NoWarn>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <Content Include="**\*" Exclude=".template.config\**;**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**" />
+        <Compile Remove="**\*" />
+      </ItemGroup>
+    </Project>
+    ```
+
+    *   **Important:** Adjust `PackageId`, `Title`, `Authors`, and `Description` to match your template.
+    *   The `<Content Include="**\*"... />` line ensures all necessary files from your template project are included in the NuGet package, while excluding temporary build artifacts and template configuration itself.
+
+2.  **Pack the template:** From the directory containing your template's `.csproj` file, run:
+
+    ```bash
+    dotnet pack
+    ```
+    This will generate a `.nupkg` file (e.g., `MyCompany.WebApi.Template.1.0.0.nupkg`) in the `bin/Debug` (or `bin/Release`) folder.
+
+3.  **Distribute the NuGet package:**
+    *   **Publish to a NuGet feed:** Push the `.nupkg` file to a private NuGet feed (e.g., Azure Artifacts, MyGet, a local network share) using `dotnet nuget push`.
+        ```bash
+        dotnet nuget push MyCompany.WebApi.Template.1.0.0.nupkg --source "Your NuGet Feed URL"
+        ```
+    *   **Share directly:** You can also share the `.nupkg` file directly, and users can install it by specifying the local path to the file.
+        ```bash
+        dotnet new install <path-to-your-template>.nupkg
+        ```
 
 ---
 
