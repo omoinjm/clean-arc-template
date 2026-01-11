@@ -11,20 +11,49 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
+      # -------------------------------
+      # Checkout
+      # -------------------------------
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # -------------------------------
+      # Setup .NET
+      # -------------------------------
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.x"
-          source-url: https://nuget.pkg.github.com/omoinjm
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # -------------------------------
+      # Configure NuGet sources
+      # -------------------------------
+      - name: Configure NuGet sources
+        run: |
+          dotnet nuget remove source github || true
+
+          dotnet nuget add source https://api.nuget.org/v3/index.json \
+            --name nuget.org
+
+          dotnet nuget add source https://nuget.pkg.github.com/omoinjm/index.json \
+            --name github \
+            --username ${{ github.actor }} \
+            --password ${{ secrets.GITHUB_TOKEN }} \
+            --store-password-in-clear-text
+
+      # -------------------------------
+      # Restore dependencies
+      # -------------------------------
+      - name: Restore
+        run: dotnet restore
+
+      # -------------------------------
+      # Versioning
+      # -------------------------------
       - name: Get next version
         id: versioning
         uses: reecetech/version-increment@2024.10.1
@@ -32,23 +61,34 @@ jobs:
           scheme: semver
           increment: patch
 
-      - name: Pack the template
+      # -------------------------------
+      # Pack NuGet package
+      # -------------------------------
+      - name: Pack template
         run: |
           dotnet pack ./src/Clean.Architecture.Template.API/Clean.Architecture.Template.API.csproj \
-            -c Release \
-            -o ./artifacts \
-            /p:PackageVersion=${{ steps.versioning.outputs.version }}
+            --configuration Release \
+            --no-restore \
+            -p:PackageVersion=${{ steps.versioning.outputs.next_version }} \
+            -o ./artifacts
 
-      - name: Create Release
-        id: create_release
+      # -------------------------------
+      # Create GitHub Release
+      # -------------------------------
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.versioning.outputs.next_version }}
-          release_name: "Release ${{ steps.versioning.outputs.next_version }}"
-          body: "Automated release based on recent commits."
-          draft: false
-          prerelease: false
-          files: "./artifacts/*.nupkg"
+          name: Release ${{ steps.versioning.outputs.next_version }}
+          body: Automated release
+          files: ./artifacts/*.nupkg
 
-      - name: Push NuGet package to GitHub Packages
-        run: dotnet nuget push "./artifacts/*.nupkg" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+      # -------------------------------
+      # Push to GitHub Packages
+      # -------------------------------
+      - name: Push NuGet package
+        run: |
+          dotnet nuget push ./artifacts/*.nupkg \
+            --source github \
+            --api-key ${{ secrets.GITHUB_TOKEN }} \
+            --skip-duplicate
