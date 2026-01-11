@@ -57,13 +57,13 @@ jobs:
             -p:PackageVersion=${{ steps.version.outputs.version-without-v }} \
             --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
-      # - name: "NuGet package"
-      #   run: |
-      #     dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg \
-      #       -k ${{ secrets.NUGET_AUTH_TOKEN }} \
-      #       -s ${{ env.NUGET_SOURCE_URL }}
+      - name: "NuGet package"
+        run: |
+          dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg \
+            -k ${{ secrets.NUGET_AUTH_TOKEN }} \
+            -s ${{ env.NUGET_SOURCE_URL }}
 
-      - name: "GitHub package"
+      - name: "GitHub add NuGet package"
         run: |
           dotnet nuget remove source github || true
           dotnet nuget add source \
@@ -72,3 +72,7 @@ jobs:
             --store-password-in-clear-text \
             --name github \
             https://nuget.pkg.github.com/omoinjm/index.json
+
+      - name: "GitHub push NuGet package"
+        run: |
+          dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg --source "github"
