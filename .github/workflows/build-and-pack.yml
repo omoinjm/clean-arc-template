@@ -1,28 +1,30 @@
 name: Build and Pack Template
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types:
+      - closed
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
 
-    - name: Pack the template
-      run: dotnet pack Clean.Architecture.Template.Templates.csproj -o ./artifacts
+      - name: Pack the template
+        run: dotnet pack Clean.Architecture.Template.Templates.csproj -o ./artifacts
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: template-package
-        path: ./artifacts
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: template-package
+          path: ./artifacts
