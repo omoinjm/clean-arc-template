@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Clean.Architecture.Template.Application\Clean.Architecture.Template.Application.csproj" />
-    <ProjectReference Include="..\..\src\Clean.Architecture.Template.Core\Clean.Architecture.Template.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\Clean.Architecture.Template.Application\Clean.Architecture.Template.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Clean.Architecture.Template.Core\Clean.Architecture.Template.Core.csproj" />
   </ItemGroup>
 
 </Project>
