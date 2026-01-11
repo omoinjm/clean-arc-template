@@ -1,10 +1,8 @@
 name: NuGet Package Release
 
 on:
-  pull_request:
-    branches: ["development", "staging"]
-    types:
-      - closed
+  push:
+    branches: ["main", "master", "production"]
 
 permissions:
   contents: write

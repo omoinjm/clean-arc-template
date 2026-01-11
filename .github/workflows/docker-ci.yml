@@ -2,7 +2,7 @@ name: C# Docker CI
 
 on:
   push:
-    branches: ["staging", "development"]
+    branches: ["development", "staging"]
 
 jobs:
   build-and-test:
@@ -17,7 +17,7 @@ jobs:
           dotnet-version: "8.x"
 
       - name: Build the solution
-        run: dotnet build --configuration Release
+        run: dotnet build "./src/Clean.Architecture.Template.API/Clean.Architecture.Template.API.csproj" -c Release
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build
