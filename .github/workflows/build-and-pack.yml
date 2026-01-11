@@ -75,4 +75,6 @@ jobs:
 
       - name: "GitHub push NuGet package"
         run: |
-          dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg --source "github"
+          dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg \
+            -k ${{ secrets.GITHUB_TOKEN }} \
+            -s "github"
