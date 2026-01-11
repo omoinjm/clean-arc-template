@@ -34,16 +34,21 @@ jobs:
       # -------------------------------
       - name: Configure NuGet sources
         run: |
-          dotnet nuget remove source github || true
-
           dotnet nuget add source https://api.nuget.org/v3/index.json \
-            --name nuget.org
+            --name nuget.org \
+            --configfile ./nuget.config \
+            || true
 
-          dotnet nuget add source https://nuget.pkg.github.com/omoinjm/index.json \
-            --name github \
+          dotnet nuget update source github \
+            --source https://nuget.pkg.github.com/omoinjm/index.json \
             --username ${{ github.actor }} \
             --password ${{ secrets.GITHUB_TOKEN }} \
-            --store-password-in-clear-text
+            --store-password-in-clear-text \
+            || dotnet nuget add source https://nuget.pkg.github.com/omoinjm/index.json \
+              --name github \
+              --username ${{ github.actor }} \
+              --password ${{ secrets.GITHUB_TOKEN }} \
+              --store-password-in-clear-text
 
       # -------------------------------
       # Restore dependencies
