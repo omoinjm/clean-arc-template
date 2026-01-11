@@ -21,6 +21,7 @@ This template implements **Clean Architecture** with clear separation of concern
 ### **Layers:**
 
 1. **Core Layer** (`Clean.Architecture.Template.Core`)
+
    - Domain entities and business logic
    - Repository interfaces
    - Specifications for business rules
@@ -28,6 +29,7 @@ This template implements **Clean Architecture** with clear separation of concern
    - Enums and attributes
 
 2. **Application Layer** (`Clean.Architecture.Template.Application`)
+
    - Commands and Queries (CQRS pattern)
    - Request handlers (MediatR)
    - DTOs and Response objects
@@ -35,6 +37,7 @@ This template implements **Clean Architecture** with clear separation of concern
    - Business logic orchestration
 
 3. **Infrastructure Layer** (`Clean.Architecture.Template.Infrastructure`)
+
    - Database repositories implementation
    - External service integrations
    - Caching services
@@ -113,11 +116,13 @@ src/
 ## Technology Stack
 
 ### Core Technologies
+
 - **Framework:** ASP.NET Core 9.0
 - **Language:** C# with nullable reference types
 - **Pattern:** Clean Architecture + CQRS
 
 ### Key Libraries
+
 - **MediatR** (12.4.1) - CQRS implementation
 - **AutoMapper** (13.0.1) - Object mapping
 - **Dapper** (2.1.35) - Data access
@@ -125,9 +130,11 @@ src/
 - **Swagger/Swashbuckle** (6.5.0) - API documentation
 
 ### Database
+
 - PostgreSQL (configurable)
 
 ### Additional Features
+
 - In-memory caching
 - Azure Blob Storage support
 - JWT token handling
@@ -160,31 +167,37 @@ Once the API is running, navigate to `https://localhost:5001/swagger` to view in
 ## Best Practices
 
 ### 1. **Command and Query Separation**
+
 - Use `Commands` for operations that modify state
 - Use `Queries` for operations that retrieve data
 - Implement corresponding handlers in the handlers folder
 
 ### 2. **Dependency Injection**
+
 - Register services in `Program.cs`
 - Use constructor injection throughout
 - Avoid service locator pattern
 
 ### 3. **Entity and DTO Separation**
+
 - Keep domain entities clean (no framework dependencies)
 - Use response DTOs to shape API responses
 - Map entities to DTOs using AutoMapper
 
 ### 4. **Repository Pattern**
+
 - Define repository interfaces in the Core layer
 - Implement repositories in the Infrastructure layer
 - Use dependency injection to access repositories
 
 ### 5. **Error Handling**
+
 - Use the `Result` type for consistent error handling
 - Return appropriate HTTP status codes
 - Log errors appropriately
 
 ### 6. **Validation**
+
 - Validate input in handlers
 - Use custom specifications for business logic validation
 - Return meaningful error messages
@@ -192,6 +205,7 @@ Once the API is running, navigate to `https://localhost:5001/swagger` to view in
 ### Example: Creating a New Feature
 
 1. **Define the Entity** (Core/Entity)
+
 ```csharp
 public class UserEntity : BaseEntity
 {
@@ -201,6 +215,7 @@ public class UserEntity : BaseEntity
 ```
 
 2. **Create the Command/Query** (Application/Commands or Queries)
+
 ```csharp
 public class CreateUserCommand : IRequest<CreateResponse>
 {
@@ -210,16 +225,17 @@ public class CreateUserCommand : IRequest<CreateResponse>
 ```
 
 3. **Implement the Handler** (Application/Handlers)
+
 ```csharp
 public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateResponse>
 {
     private readonly IUserRepository _repository;
-    
+
     public CreateUserHandler(IUserRepository repository)
     {
         _repository = repository;
     }
-    
+
     public async Task<CreateResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var user = new UserEntity { Email = request.Email, Username = request.Username };
@@ -230,6 +246,7 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateRespon
 ```
 
 4. **Create the Controller Endpoint** (API/Controllers)
+
 ```csharp
 [HttpPost]
 public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
@@ -256,4 +273,3 @@ Feel free to fork this repository and submit pull requests to improve the templa
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
