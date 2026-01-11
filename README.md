@@ -23,5 +23,5 @@ To create a REST API with ASP.NET Core:
 To create a ASP.NET Core Web API-only solution:
 
 ```bash
-dotnet new ca-sln -cf None -o YourProjectName
+dotnet new ca-sln -cf None -o YourProjectNames
 ```
