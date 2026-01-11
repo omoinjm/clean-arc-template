@@ -19,7 +19,7 @@ namespace Clean.Architecture.Template.Application.Handlers.Menu
 
             var menuResponseList = LazyMapper.Mapper.Map<List<MenuResponse>>(menuList);
 
-            return menuResponseList
+            return [.. menuResponseList
                 .GroupBy(menu => new { menu.ModuleId, menu.ModuleDisplayText, menu.ModuleIcon, menu.ModuleSortOrder, menu.ModuleRouterLink })
                 .Select(group => new MenuModuleResponse
                 {
@@ -29,9 +29,8 @@ namespace Clean.Architecture.Template.Application.Handlers.Menu
                     ModuleSortOrder = group.Key.ModuleSortOrder,
                     ModuleRouterLink = group.Key.ModuleRouterLink,
 
-                    MenuList = group.ToList()
-                })
-                .ToList();
+                    MenuList = [.. group]
+                })];
         }
     }
 }

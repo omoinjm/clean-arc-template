@@ -49,7 +49,7 @@ namespace Clean.Architecture.Template.API.Controllers
         {
             var result = await _mediator.Send(new ListAllQuery<MenuResponse>());
 
-            return Ok(ReturnSuccessModel<DataList<MenuResponse>>(result));
+            return Ok(ReturnSuccessModel<IList<MenuResponse>>(result));
         }
 
         [Authorize]
