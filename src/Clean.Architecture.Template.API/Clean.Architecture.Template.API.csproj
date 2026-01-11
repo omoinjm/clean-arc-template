@@ -7,6 +7,10 @@
     <IsPackable>true</IsPackable>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <Company>NJMTECH</Company>
+    <PackageDescription>Template API</PackageDescription>
+    <RepositoryUrl>https://github.com/omoinjm/clean-arc-template</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

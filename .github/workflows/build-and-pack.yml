@@ -57,8 +57,14 @@ jobs:
             -p:PackageVersion=${{ steps.version.outputs.version-without-v }} \
             --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
-      - name: "Push package"
+      - name: "NuGet package"
         run: |
           dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg \
             -k ${{ secrets.NUGET_AUTH_TOKEN }} \
             -s ${{ env.NUGET_SOURCE_URL }}
+
+      - name: "GitHub package"
+        run: |
+          dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg \
+            --api-key ${{ secrets.GITHUB_PAT }} \
+            --source "github"
