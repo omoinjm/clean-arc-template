@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageId>Clean.Architecture.Template</PackageId>
+    <Title>Clean Architecture Template</Title>
+    <Authors>omoinjm</Authors>
+    <Description>A Clean Architecture Solution Template for creating a API with ASP.NET Core.</Description>
+    <PackageTags>dotnet-new;template;webapi;clean-architecture</PackageTags>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="**\*" Exclude=".template.config\**;**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\*.csproj" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+</Project>
