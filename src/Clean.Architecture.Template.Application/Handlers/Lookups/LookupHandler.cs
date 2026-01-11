@@ -15,7 +15,7 @@ namespace Clean.Architecture.Template.Application.Handlers.Lookups
 
         public async Task<DataList<LookupResponse>> Handle(LookupQuery<LookupResponse> request, CancellationToken cancellationToken)
         {
-            var items = await _repository.GetLookup(request.LookupParams);
+            var items = await _repository.GetLookupList(request.LookupParams);
 
             return LazyMapper.Mapper.Map<DataList<LookupResponse>>(items);
         }

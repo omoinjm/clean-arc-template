@@ -15,7 +15,7 @@ namespace Clean.Architecture.Template.Application.Handlers.Menu
 
         public async Task<IList<MenuModuleResponse>> Handle(ListAllQuery<MenuModuleResponse> request, CancellationToken cancellationToken)
         {
-            var menuList = await _repository.GetMenus();
+            var menuList = await _repository.GetMenuItems();
 
             var menuResponseList = LazyMapper.Mapper.Map<List<MenuResponse>>(menuList);
 

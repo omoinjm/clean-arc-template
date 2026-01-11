@@ -179,7 +179,13 @@ namespace Clean.Architecture.Template.Infrastructure.DbQueries.User
 
         public static string DeleteUserQuery(int id)
         {
-
+            string query = $@"
+                UPDATE users 
+                SET is_active = false, 
+                    updated_date = NOW()
+                WHERE id = {id}
+            ";
+            return query;
         }
 
         #endregion
