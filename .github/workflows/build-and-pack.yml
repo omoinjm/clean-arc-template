@@ -103,7 +103,9 @@ jobs:
       # -------------------------------
       - name: Push NuGet package
         run: |
-          dotnet nuget push ./artifacts/*.nupkg \
-            --source github \
-            --api-key ${{ secrets.GITHUB_TOKEN }} \
-            --skip-duplicate
+          mkdir -p ./artifacts
+          dotnet pack ./src/Clean.Architecture.Template.API/Clean.Architecture.Template.API.csproj \
+            --configuration Release \
+            --no-restore \
+            -p:PackageVersion=${{ steps.versioning.outputs.next_version }} \
+            -o ./artifacts
