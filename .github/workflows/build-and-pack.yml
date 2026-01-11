@@ -66,5 +66,5 @@ jobs:
       - name: "GitHub package"
         run: |
           dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg \
-            --api-key ${{ secrets.GITHUB_PAT }} \
+            --api-key ${{ secrets.PAT }} \
             --source "github"
