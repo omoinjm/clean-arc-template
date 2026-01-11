@@ -33,7 +33,11 @@ jobs:
           increment: patch
 
       - name: Pack the template
-        run: dotnet pack "./src/Clean.Architecture.Template.API/Clean.Architecture.Template.API.csproj" --configuration Release --output-directory ./artifacts -p:PackageVersion=${{ steps.versioning.outputs.next_version }}
+        run: |
+          dotnet pack ./src/Clean.Architecture.Template.API/Clean.Architecture.Template.API.csproj \
+            -c Release \
+            -o ./artifacts \
+            /p:PackageVersion=${{ steps.versioning.outputs.version }}
 
       - name: Create Release
         id: create_release
