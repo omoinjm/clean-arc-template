@@ -90,13 +90,13 @@ jobs:
       # -------------------------------
       # Create GitHub Release
       # -------------------------------
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.versioning.outputs.next_version }}
-          name: Release ${{ steps.versioning.outputs.next_version }}
-          body: Automated release
-          files: ./artifacts/*.nupkg
+      # - name: Create GitHub Release
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     tag_name: ${{ steps.versioning.outputs.next_version }}
+      #     name: Release ${{ steps.versioning.outputs.next_version }}
+      #     body: Automated release
+      #     files: ./artifacts/*.nupkg
 
       # -------------------------------
       # Push to GitHub Packages
