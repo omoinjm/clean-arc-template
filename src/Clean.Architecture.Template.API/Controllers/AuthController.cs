@@ -12,10 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Clean.Architecture.Template.API.Controllers
 {
-    public class AuthController(IMediator mediator, ILogger logger) : ApiController
+    public class AuthController(IMediator mediator, ILogger<AuthController> logger) : ApiController
     {
         private readonly IMediator _mediator = mediator;
-        private readonly ILogger _logger = logger;
+        private readonly ILogger<AuthController> _logger = logger;
 
         [AllowAnonymous]
         [HttpPost]
@@ -36,7 +36,7 @@ namespace Clean.Architecture.Template.API.Controllers
         [HttpPost]
         [Route("Logout")]
         [ProducesResponseType(typeof(Clean.Architecture.Template.Application.Response.BaseResponse), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
             return Ok(ReturnSuccessModel<UpdateResponse>(null, "Logout successful!", (int)HttpStatusCode.OK, true, 0));
         }

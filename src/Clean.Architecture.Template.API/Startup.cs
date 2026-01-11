@@ -25,8 +25,6 @@ namespace Clean.Architecture.Template.API
 {
     public class Startup(IConfiguration configuration, IWebHostEnvironment env)
     {
-        public IConfiguration Configuration = configuration;
-        private readonly IWebHostEnvironment _env = env;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -47,7 +45,7 @@ namespace Clean.Architecture.Template.API
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                            Environment.GetEnvironmentVariable("SECRET_KEY") ?? Configuration["Values:SECRET_KEY"]!
+                            Environment.GetEnvironmentVariable("SECRET_KEY") ?? configuration["Values:SECRET_KEY"]!
                             )
                         )
                     };
@@ -58,7 +56,7 @@ namespace Clean.Architecture.Template.API
                         {
                             if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
                             {
-                                context.Response.Headers.Add("Token-Expired", "true");
+                                context.Response.Headers.Append("Token-Expired", "true");
                             }
                             return Task.CompletedTask;
                         }
@@ -133,7 +131,7 @@ namespace Clean.Architecture.Template.API
                 {
                     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-                    options.JsonSerializerOptions.WriteIndented = _env.IsDevelopment(); // Pretty print only in dev
+                    options.JsonSerializerOptions.WriteIndented = env.IsDevelopment(); // Pretty print only in dev
                 });
 
             services.AddApiVersioning();
@@ -151,12 +149,6 @@ namespace Clean.Architecture.Template.API
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Clean Architecture Template API", Version = "v1" }); });
 
             //DI
-            var serviceProvider = services.BuildServiceProvider();
-            var logger = serviceProvider.GetService<ILogger<ApplicationLogs>>();
-
-            services.AddSingleton(typeof(ILogger), logger);
-            services.AddSingleton<ILoggerFactory, LoggerFactory>();
-            services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 
             // JM: Register the global exception handler
             services.AddSingleton<IExceptionHandler, GlobalExceptionHandler>();

@@ -7,7 +7,7 @@ namespace Clean.Architecture.Template.Infrastructure.Services
     {
         private readonly IMemoryCache _memoryCache = memoryCache;
 
-        public T Get<T>(string key)
+        public T? Get<T>(string key)
         {
             return _memoryCache.Get<T>(key);
         }

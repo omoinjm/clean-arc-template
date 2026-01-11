@@ -5,6 +5,6 @@ namespace Clean.Architecture.Template.Application.Queries.Identity
 {
     public class GetLoginCredentialsQuery : IRequest<ResponseLogin>
     {
-        public string Token { get; set; }
+        public string Token { get; set; } = string.Empty;
     }
 }

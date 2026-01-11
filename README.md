@@ -66,6 +66,28 @@ The easiest way to get started is to install the [.NET template](https://www.nug
 dotnet new install Clean.Architecture.Solution.Template::9.0.8
 ```
 
+### Local Development Installation
+
+If you want to install the template from your local machine to test changes, you can install it directly from the project's root directory.
+
+**Install:**
+Use this command to install the template from the local source code:
+```bash
+dotnet new install .
+```
+
+**Create a new project:**
+Once installed, you can create a new solution with this command:
+```bash
+dotnet new clean-arc-sln -n YourProjectName
+```
+
+**Uninstall:**
+To uninstall the local template, run this command from the project's root directory:
+```bash
+dotnet new uninstall .
+```
+
 ### Creating a New Project
 
 Once installed, create a new solution using the template:

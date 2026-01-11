@@ -19,13 +19,13 @@ namespace Clean.Architecture.Template.Core.Attributes
             protected set;
         }
 
-        public string FriendlyName
+        public string? FriendlyName
         {
             get;
             set;
         }
 
-        public string DescriptivePropertyName
+        public string? DescriptivePropertyName
         {
             get;
             set;
@@ -106,7 +106,7 @@ namespace Clean.Architecture.Template.Core.Attributes
 
     public class ValidationInfo
     {
-        private static ValidationInfo _valid;
+        private static ValidationInfo? _valid;
 
         public static ValidationInfo Valid
         {
@@ -144,7 +144,7 @@ namespace Clean.Architecture.Template.Core.Attributes
             ErrorMessage = errorMessage;
         }
 
-        public ValidationAttribute ValidationAttribute
+        public ValidationAttribute? ValidationAttribute
         {
             get;
             set;
@@ -156,7 +156,7 @@ namespace Clean.Architecture.Template.Core.Attributes
             set;
         }
 
-        private string _errorMessage;
+        private string _errorMessage = string.Empty;
 
         public string ErrorMessage
         {
@@ -164,7 +164,10 @@ namespace Clean.Architecture.Template.Core.Attributes
             {
                 if (string.IsNullOrEmpty(_errorMessage) && !IsValid)
                 {
-                    _errorMessage = ValidationAttribute.FriendlyName + " is invalid";
+                    if (ValidationAttribute is not null)
+                    {
+                        _errorMessage = ValidationAttribute.FriendlyName + " is invalid";
+                    }
                 }
 
                 return _errorMessage;

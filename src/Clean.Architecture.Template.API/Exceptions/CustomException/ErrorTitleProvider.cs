@@ -29,9 +29,9 @@ namespace Clean.Architecture.Template.API.Exceptions.CustomException
         {
             var exceptionType = exception.GetType();
 
-            if (ExceptionTitles.TryGetValue(exceptionType, out string title))
+            if (ExceptionTitles.ContainsKey(exceptionType))
             {
-                return title;
+                return ExceptionTitles[exceptionType];
             }
 
             // Default title if exception type is not found
