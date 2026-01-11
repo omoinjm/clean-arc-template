@@ -80,12 +80,12 @@ jobs:
       # -------------------------------
       # Create Git tag
       # -------------------------------
-      - name: Create Git tag
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git tag -a "v${{ steps.versioning.outputs.next_version }}" -m "Release ${{ steps.versioning.outputs.next_version }}"
-          git push origin "v${{ steps.versioning.outputs.next_version }}"
+      # - name: Create Git tag
+      #   run: |
+      #     git config user.name "${{ github.actor }}"
+      #     git config user.email "${{ github.actor }}@users.noreply.github.com"
+      #     git tag -a "v${{ steps.versioning.outputs.next_version }}" -m "Release ${{ steps.versioning.outputs.next_version }}"
+      #     git push origin "v${{ steps.versioning.outputs.next_version }}"
 
       # -------------------------------
       # Create GitHub Release
