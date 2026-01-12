@@ -18,13 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Clean.Architecture.Template.Core\Clean.Architecture.Template.Core.csproj" />
-    <ProjectReference Include="..\..\TestCommon\Clean.Architecture.Template.TestCommon.csproj" />
+    <ProjectReference Include="..\..\src\Clean.Architecture.Template.Core\Clean.Architecture.Template.Core.csproj" />
+    <ProjectReference Include="..\TestCommon\Clean.Architecture.Template.TestCommon.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
     <Using Include="FluentAssertions" />
+    <Using Include="Clean.Architecture.Template.TestCommon.Factories" />
+    <Using Include="Clean.Architecture.Template.TestCommon.TestConstants" />
+    <Using Include="Clean.Architecture.Template.TestCommon.Extensions" />
   </ItemGroup>
 
 </Project>
