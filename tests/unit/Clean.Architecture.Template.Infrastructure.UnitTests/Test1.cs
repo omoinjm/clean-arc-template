@@ -1,10 +1,10 @@
-﻿namespace Clean.Architecture.Template.Infrastructure.Tests;
+﻿namespace Clean.Architecture.Template.Infrastructure.UnitTests;
 
-[TestClass]
-public sealed class Test1
+public class PlaceholderTests
 {
-    [TestMethod]
-    public void TestMethod1()
+    [Fact]
+    public void Placeholder_Test()
     {
+        true.Should().BeTrue();
     }
 }

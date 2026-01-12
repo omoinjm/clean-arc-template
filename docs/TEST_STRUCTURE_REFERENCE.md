@@ -314,4 +314,3 @@ From the reference repository, examine:
 3. `/tests/CleanArchitecture.Application.SubcutaneousTests/Subscriptions/Commands/CreateSubscription/CreateSubscription.AuthorizationTests.cs` - Authorization tests
 4. `/tests/CleanArchitecture.Application.SubcutaneousTests/Subscriptions/Commands/CreateSubscription/CreateSubscription.ValidationTests.cs` - Validation tests
 5. `/tests/TestCommon/TestConstants/` - Constants structure
-

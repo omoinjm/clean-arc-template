@@ -1,13 +1,11 @@
 using Clean.Architecture.Template.Core.Entity;
 using Clean.Architecture.Template.TestCommon.Factories;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Clean.Architecture.Template.Core.UnitTests
 {
-    [TestClass]
     public class UserEntityTests
     {
-        [TestMethod]
+        [Fact]
         public void UserEntity_Properties_CanBeSetAndGet()
         {
             // Arrange
@@ -18,32 +16,32 @@ namespace Clean.Architecture.Template.Core.UnitTests
                 email: "john.doe@example.com");
 
             // Assert
-            Assert.AreEqual(1, user.Id);
-            Assert.AreEqual("John", user.Name);
-            Assert.AreEqual("Doe", user.Surname);
-            Assert.AreEqual("john.doe@example.com", user.Email);
-            Assert.AreEqual("johndoe", user.Username);
-            Assert.AreEqual("password", user.Password);
-            Assert.AreEqual("salt", user.Salt);
-            Assert.IsFalse(user.ChangePassword);
-            Assert.IsFalse(user.Deleted);
-            Assert.AreEqual("admin", user.CreatedBy);
-            Assert.IsNull(user.UpdatedAt);
-            Assert.IsNull(user.DeletedAt);
-            Assert.AreEqual("123456789", user.IdNumber);
-            Assert.AreEqual("1234567890", user.PhoneNumber);
-            Assert.AreEqual("User", user.Role);
-            Assert.IsNull(user.ForgotPasswordGuid);
-            Assert.IsNull(user.Otp);
-            Assert.IsTrue(user.IsActive);
-            Assert.IsNull(user.LoginDate);
-            Assert.AreEqual(1, user.UserStatusId);
-            Assert.AreEqual("Active", user.UserStatusName);
-            Assert.AreEqual("A", user.UserStatusSymbol);
-            Assert.AreEqual("Green", user.UserStatusColor);
-            Assert.AreEqual("token", user.Token);
-            Assert.IsNull(user.ExpiryDateTime);
-            Assert.IsNull(user.LoginTimeStamp);
+            user.Id.Should().Be(1);
+            user.Name.Should().Be("John");
+            user.Surname.Should().Be("Doe");
+            user.Email.Should().Be("john.doe@example.com");
+            user.Username.Should().Be("johndoe");
+            user.Password.Should().Be("password");
+            user.Salt.Should().Be("salt");
+            user.ChangePassword.Should().BeFalse();
+            user.Deleted.Should().BeFalse();
+            user.CreatedBy.Should().Be("admin");
+            user.UpdatedAt.Should().BeNull();
+            user.DeletedAt.Should().BeNull();
+            user.IdNumber.Should().Be("123456789");
+            user.PhoneNumber.Should().Be("1234567890");
+            user.Role.Should().Be("User");
+            user.ForgotPasswordGuid.Should().BeNull();
+            user.Otp.Should().BeNull();
+            user.IsActive.Should().BeTrue();
+            user.LoginDate.Should().BeNull();
+            user.UserStatusId.Should().Be(1);
+            user.UserStatusName.Should().Be("Active");
+            user.UserStatusSymbol.Should().Be("A");
+            user.UserStatusColor.Should().Be("Green");
+            user.Token.Should().Be("token");
+            user.ExpiryDateTime.Should().BeNull();
+            user.LoginTimeStamp.Should().BeNull();
         }
     }
 }

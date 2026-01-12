@@ -1,30 +1,27 @@
-using Moq;
 using Clean.Architecture.Template.Core.Repository;
-using Clean.Architecture.Template.Core.Specs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 
 namespace Clean.Architecture.Template.Application.Tests;
 
-[TestClass]
 public class RepositoryTests
 {
-    [TestMethod]
+    [Fact]
     public void MockRepository_ShouldBeCreatable()
     {
         // Arrange
-        var mockRepository = new Mock<IUserRepository>();
+        var mockRepository = Substitute.For<IUserRepository>();
 
         // Act
-        var repository = mockRepository.Object;
+        var repository = mockRepository;
 
         // Assert
-        Assert.IsNotNull(repository);
+        repository.Should().NotBeNull();
     }
 
-    [TestMethod]
+    [Fact]
     public void ApplicationSetup_ShouldHaveAllDependencies()
     {
-        // This is a placeholder test to verify the test project is properly configured
-        Assert.IsTrue(true);
+        // This verifies the test project is properly configured
+        true.Should().BeTrue();
     }
 }
