@@ -1,5 +1,5 @@
 # Build Stage
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
@@ -15,7 +15,7 @@ COPY ["./src/Clean.Architecture.Template.Application/Clean.Architecture.Template
 COPY ["./src/Clean.Architecture.Template.Core/Clean.Architecture.Template.Core.csproj", "./"]
 COPY ["./src/Clean.Architecture.Template.Infrastructure/Clean.Architecture.Template.Infrastructure.csproj", "./"]
 
-RUN dotnet restore "./src/Clean.Architecture.Template.API/Clean.Architecture.Template.API.csproj"
+RUN dotnet restore "./Clean.Architecture.Template.API.csproj"
 
 # Copy remaining files and build
 COPY . .
