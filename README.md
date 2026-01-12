@@ -1,4 +1,13 @@
-# Clean Architecture Solution Template
+[![Build](https://github.com/omoinjm/clean-arc-template/actions/workflows/build.yml/badge.svg)](https://github.com/omoinjm/clean-arc-template/actions/workflows/build.yml) [![Publish template to NuGet](https://github.com/omoinjm/clean-arc-template/actions/workflows/publish.yml/badge.svg)](https://github.com/omoinjm/clean-arc-template/actions/workflows/build.yml)
+
+[![GitHub contributors](https://img.shields.io/github/contributors/omoinjm/clean-arc-template)](https://github.com/omoinjm/clean-arc-template/graphs/contributors/) [![GitHub Stars](https://img.shields.io/github/stars/omoinjm/clean-arc-template.svg)](https://github.com/omoinjm/clean-arc-template/stargazers) [![GitHub license](https://img.shields.io/github/license/omoinjm/clean-arc-template)](https://github.com/omoinjm/clean-arc-template/blob/main/LICENSE)
+[![codecov](https://codecov.io/gh/omoinjm/clean-arc-template/branch/main/graph/badge.svg?token=DR2EBIWK7B)](https://codecov.io/gh/omoinjm/clean-arc-template)
+
+---
+
+![Clean Architecture Template Title](docs/assets/Clean%20Architecture%20Template%20Title.png)
+
+---
 
 The goal of this template is to provide a straightforward and efficient approach to enterprise application development, leveraging the power of Clean Architecture and ASP.NET Core. Using this template, you can effortlessly create REST APIs with ASP.NET Core, while adhering to the principles of Clean Architecture. Getting started is easy - simply install the **.NET template** (see below for full details).
 
@@ -21,7 +30,6 @@ This template implements **Clean Architecture** with clear separation of concern
 ### **Layers:**
 
 1. **Core Layer** (`Clean.Architecture.Template.Core`)
-
    - Domain entities and business logic
    - Repository interfaces
    - Specifications for business rules
@@ -29,7 +37,6 @@ This template implements **Clean Architecture** with clear separation of concern
    - Enums and attributes
 
 2. **Application Layer** (`Clean.Architecture.Template.Application`)
-
    - Commands and Queries (CQRS pattern)
    - Request handlers (MediatR)
    - DTOs and Response objects
@@ -37,7 +44,6 @@ This template implements **Clean Architecture** with clear separation of concern
    - Business logic orchestration
 
 3. **Infrastructure Layer** (`Clean.Architecture.Template.Infrastructure`)
-
    - Database repositories implementation
    - External service integrations
    - Caching services
@@ -72,18 +78,21 @@ If you want to install the template from your local machine to test changes, you
 
 **Install:**
 Use this command to install the template from the local source code:
+
 ```bash
 dotnet new install .
 ```
 
 **Create a new project:**
 Once installed, you can create a new solution with this command:
+
 ```bash
 dotnet new clean-arc-sln -n YourProjectName
 ```
 
 **Uninstall:**
 To uninstall the local template, run this command from the project's root directory:
+
 ```bash
 dotnet new uninstall .
 ```

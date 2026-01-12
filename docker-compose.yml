@@ -1,8 +1,33 @@
-version: '3.4'
-
 services:
   clean.architecture.template.api:
     image: ${DOCKER_REGISTRY-}cleanarchitecturetemplateapi
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - PGSQL_CONNECTION_STRING=Host=db;Port=5432;Database=clean_architecture_template;Username=user;Password=password
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5001
+      - SECRET_KEY=c177d892c1fa06f8e6727dd47d96fc08cadb42ad49f2274970080fb409aa63c7
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=clean_architecture_template
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d clean_architecture_template"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  postgres_data:

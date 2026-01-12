@@ -16,9 +16,14 @@ namespace Clean.Architecture.Template.Application.Handlers.Users
 
         public async Task<CreateResponse> Handle(CreateCommand<UserEntity, CreateResponse> request, CancellationToken cancellationToken)
         {
+            if (request.Item == null)
+            {
+                return new CreateResponse();
+            }
+
             request.Item.Salt = request.Item.Salt;
 
-            var result = (request.Item != null) ? await _repository.CreateUser(request.Item) : new CreateRecordResult();
+            var result = await _repository.CreateUser(request.Item);
 
             return LazyMapper.Mapper.Map<CreateResponse>(result);
         }
