@@ -15,7 +15,7 @@ COPY ["./src/Clean.Architecture.Template.Application/Clean.Architecture.Template
 COPY ["./src/Clean.Architecture.Template.Core/Clean.Architecture.Template.Core.csproj", "./"]
 COPY ["./src/Clean.Architecture.Template.Infrastructure/Clean.Architecture.Template.Infrastructure.csproj", "./"]
 
-RUN dotnet restore "./Wallety.Portal.Api.csproj"
+RUN dotnet restore "./Clean.Architecture.Template.API.csproj"
 
 # Copy remaining files and build
 COPY . .
