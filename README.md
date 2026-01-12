@@ -1,11 +1,11 @@
-[![Build](https://github.com/omoinjm/clean-arc-template/actions/workflows/docker-ci.yml/badge.svg)](https://github.com/omoinjm/clean-arc-template/actions/workflows/docker-ci.yml) [![Publish template to NuGet](https://github.com/omoinjm/clean-arc-template/actions/workflows/build-and-pack.yml/badge.svg)](https://github.com/omoinjm/clean-arc-template/actions/workflows/docker-ci.yml)
+[![Build](https://github.com/omoinjm/clean-arc-template/actions/workflows/build.yml/badge.svg)](https://github.com/omoinjm/clean-arc-template/actions/workflows/build.yml) [![Publish template to NuGet](https://github.com/omoinjm/clean-arc-template/actions/workflows/publish.yml/badge.svg)](https://github.com/omoinjm/clean-arc-template/actions/workflows/build.yml)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/omoinjm/clean-arc-template)](https://github.com/omoinjm/clean-arc-template/graphs/contributors/) [![GitHub Stars](https://img.shields.io/github/stars/omoinjm/clean-arc-template.svg)](https://github.com/omoinjm/clean-arc-template/stargazers) [![GitHub license](https://img.shields.io/github/license/omoinjm/clean-arc-template)](https://github.com/omoinjm/clean-arc-template/blob/main/LICENSE)
 [![codecov](https://codecov.io/gh/omoinjm/clean-arc-template/branch/main/graph/badge.svg?token=DR2EBIWK7B)](https://codecov.io/gh/omoinjm/clean-arc-template)
 
 ---
 
-![Clean Architecture Template Title](assets/Clean%20Architecture%20Template%20Title.png)
+![Clean Architecture Template Title](docs/assets/Clean%20Architecture%20Template%20Title.png)
 
 ---
 
