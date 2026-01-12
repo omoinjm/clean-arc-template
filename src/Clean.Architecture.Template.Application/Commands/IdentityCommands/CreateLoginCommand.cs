@@ -5,7 +5,7 @@ namespace Clean.Architecture.Template.Application.Common.IdentityCommands
 {
     public class CreateLoginCommand : BaseRequest, IRequest<ResponseLogin>
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

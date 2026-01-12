@@ -10,13 +10,13 @@ namespace Clean.Architecture.Template.Application.Response.Menu
         public int SortOrder { get; set; }
         public int ModuleSortOrder { get; set; }
 
-        public string Icon { get; set; }
-        public string ModuleIcon { get; set; }
+        public string Icon { get; set; } = string.Empty;
+        public string ModuleIcon { get; set; } = string.Empty;
 
-        public string DisplayText { get; set; }
-        public string ModuleDisplayText { get; set; }
+        public string DisplayText { get; set; } = string.Empty;
+        public string ModuleDisplayText { get; set; } = string.Empty;
 
-        public string RouterLink { get; set; }
+        public string RouterLink { get; set; } = string.Empty;
         public string? ModuleRouterLink { get; set; }
     }
 }

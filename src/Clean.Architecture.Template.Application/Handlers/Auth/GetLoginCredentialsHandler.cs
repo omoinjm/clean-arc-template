@@ -12,9 +12,11 @@ namespace Clean.Architecture.Template.Application.Handlers.Auth
     {
         private readonly ICachingInMemoryService _caching = caching;
 
-        public async Task<ResponseLogin> Handle(GetLoginCredentialsQuery request, CancellationToken cancellationToken)
+        public Task<ResponseLogin> Handle(GetLoginCredentialsQuery request, CancellationToken cancellationToken)
         {
-            return _caching.Get<ResponseLogin>(request.Token);
+            var cachedResponse = _caching.Get<ResponseLogin>(request.Token);
+            
+            return Task.FromResult(cachedResponse ?? new ResponseLogin());
         }
     }
 }

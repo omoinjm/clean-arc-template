@@ -62,7 +62,7 @@ namespace Clean.Architecture.Template.Infrastructure.Repository
         {
             var token = _cachingInMemoryService.Get<string>("AuthToken") ?? throw new ApplicationException("Cannot get token from Caching In Memory Service, need to login again");
 
-            return _cachingInMemoryService.Get<IUserInfo>(token);
+            return _cachingInMemoryService.Get<IUserInfo>(token) ?? throw new ApplicationException("Cannot get user info from Caching In Memory Service, need to login again");
         }
 
         #endregion
@@ -129,12 +129,12 @@ namespace Clean.Architecture.Template.Infrastructure.Repository
             return new CreateRecordResult() { IsSuccess = true, ReturnRecordId = id };
         }
 
-        public async Task<UpdateRecordResult> UpdateUser(UserEntity user)
+        public Task<UpdateRecordResult> UpdateUser(UserEntity user)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<DeleteRecordResult> DeleteUser(int id)
+        public Task<DeleteRecordResult> DeleteUser(int id)
         {
             throw new NotImplementedException();
         }

@@ -8,7 +8,7 @@ namespace Clean.Architecture.Template.Application.Mapper
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
+                cfg.ShouldMapProperty = p => p.GetMethod != null && (p.GetMethod.IsPublic || p.GetMethod.IsAssembly);
                 cfg.AddProfile<ConfigureMappingProfile>();
             });
             var mapper = config.CreateMapper();

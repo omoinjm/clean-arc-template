@@ -23,7 +23,7 @@ namespace Clean.Architecture.Template.Core.Attributes
             set;
         }
 
-        public string ExcelColumnName
+        public string? ExcelColumnName
         {
             get;
             set;
